@@ -29,7 +29,7 @@ app.use("/products", productRoutes); // http://localhost:8000/products
 app.use("/users",userRoutes)
 app.use("/expenses",expenseRoutes)
 /* SERVER */
-const port = Number(process.env.PORT) || 3001;
+const port = Number(process.env.NEXT_PUBLIC_PORT) || 3001;
 app.listen(port, "0.0.0.0", () => {
     console.log(`Server running on port ${port}`);
 });
