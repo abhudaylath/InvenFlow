@@ -90,7 +90,7 @@ export const api = createApi({
             providesTags: ["Expenses"],
         }),
     }),
-});
+}); 
 
 export const {
     useGetDashboardMetricsQuery,
