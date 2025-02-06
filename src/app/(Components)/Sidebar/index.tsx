@@ -2,6 +2,8 @@
 
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsSidebarCollapsed } from "@/state";
+import { faWarehouse } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     Archive,
     CircleDollarSign,
@@ -75,12 +77,12 @@ const Sidebar = () => {
                 className={`flex gap-3 justify-between md:justify-normal items-center pt-8 ${isSidebarCollapsed ? "px-5" : "px-8"
                     }`}
             >
-                image
+                <FontAwesomeIcon icon={faWarehouse} />
                 <h1
                     className={`${isSidebarCollapsed ? "hidden" : "block"
                         } font-extrabold text-2xl`}
                 >
-                    EDSTOCK
+                    InvenFlow
                 </h1>
 
                 <button
@@ -133,7 +135,7 @@ const Sidebar = () => {
 
             {/* FOOTER */}
             <div className={`${isSidebarCollapsed ? "hidden" : "block"} mb-10`}>
-                <p className="text-center text-xs text-gray-500">&copy; 2024 Edstock</p>
+                <p className="text-center text-xs text-gray-500">&copy; 2024 InvenFlow</p>
             </div>
         </div>
     );
