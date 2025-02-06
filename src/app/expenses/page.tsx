@@ -14,6 +14,7 @@ import {
     ResponsiveContainer,
     Tooltip,
 } from "recharts";
+import { useAppSelector } from "../redux";
 
 type AggregatedDataItem = {
     name: string;
@@ -30,7 +31,8 @@ const Expenses = () => {
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
-
+    const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
+        
     const {
         data: expensesData,
         isLoading,
@@ -70,11 +72,8 @@ const Expenses = () => {
         return Object.values(filtered);
     }, [expenses, selectedCategory, startDate, endDate]);
 
-    const classNames = {
-        label: "block text-sm font-medium text-gray-700",
-        selectInput:
-            "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md",
-    };
+    const label= `block text-sm font-medium ${isDarkMode?'text-gray-900':'text-gray-900'}`
+    const  selectInput= `mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md ${isDarkMode?'text-white':'text-gray-900'}`
 
     if (isLoading) {
         return <div className="py-4">Loading...</div>;
@@ -107,13 +106,13 @@ const Expenses = () => {
                     <div className="space-y-4">
                         {/* CATEGORY */}
                         <div>
-                            <label htmlFor="category" className={classNames.label}>
+                            <label htmlFor="category" className={label}>
                                 Category
                             </label>
                             <select
                                 id="category"
                                 name="category"
-                                className={classNames.selectInput}
+                                className={selectInput}
                                 defaultValue="All"
                                 onChange={(e) => setSelectedCategory(e.target.value)}
                             >
@@ -125,27 +124,27 @@ const Expenses = () => {
                         </div>
                         {/* START DATE */}
                         <div>
-                            <label htmlFor="start-date" className={classNames.label}>
+                            <label htmlFor="start-date" className={label}>
                                 Start Date
                             </label>
                             <input
                                 type="date"
                                 id="start-date"
                                 name="start-date"
-                                className={classNames.selectInput}
+                                className={selectInput}
                                 onChange={(e) => setStartDate(e.target.value)}
                             />
                         </div>
                         {/* END DATE */}
                         <div>
-                            <label htmlFor="end-date" className={classNames.label}>
+                            <label htmlFor="end-date" className={label}>
                                 End Date
                             </label>
                             <input
                                 type="date"
                                 id="end-date"
                                 name="end-date"
-                                className={classNames.selectInput}
+                                className={selectInput}
                                 onChange={(e) => setEndDate(e.target.value)}
                             />
                         </div>
